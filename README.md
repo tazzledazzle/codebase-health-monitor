@@ -2,7 +2,7 @@
 
 “Visualize, Document, and Monitor Your Codebase Instantly”
 
-⸻
+---
 
 Table of Contents
 
@@ -14,7 +14,7 @@ Table of Contents
 6. Wireframes (Low-Fidelity)
 7. Project Stories (Agile/Epics)
 
-⸻
+---
 
 ## 1. Overview / Project Story
 
@@ -30,7 +30,7 @@ Development teams, especially those inheriting legacy or complex repos, struggle
 * Sentry-style error overlays to see problem areas, with live updates from Sentry or your error pipeline.
 * Bolt.new/21st.dev inspired widget system for embeddable, self-updating visualizations and docs.
 
-⸻
+---
 
 ## 2. Use Cases
 
@@ -59,7 +59,7 @@ Development teams, especially those inheriting legacy or complex repos, struggle
 * PMs or managers want periodic “code health” reports.
 * The platform auto-generates a snapshot of dependency complexity, hot spot density, and documentation coverage.
 
-⸻
+---
 
 ## 3. Functional Specifications
 
@@ -112,7 +112,7 @@ Development teams, especially those inheriting legacy or complex repos, struggle
 * Secure storage (data encryption at rest/in transit).
 * Multi-tenant SaaS support.
 
-⸻
+---
 
 ## 4. Component Diagram
 
@@ -145,7 +145,7 @@ Development teams, especially those inheriting legacy or complex repos, struggle
 [ Embeddable Widget SDK / iFrame ] <-- External Wiki/Docs/Other Sites
 ```
 
-⸻
+---
 
 ## 5. Data Flow Diagrams (for All Use Cases)
 
@@ -189,7 +189,7 @@ Backend generates PDF/HTML/CSV snapshot
 User downloads/views/share report
 ```
 
-⸻
+---
 
 ## 6. Wireframes (Low-Fidelity)
 
@@ -245,7 +245,7 @@ User downloads/views/share report
 +----------------------------------------------------+
 ```
 
-⸻
+---
 
 ## 7. Project Stories (Agile/Epics)
 
@@ -273,7 +273,7 @@ User downloads/views/share report
 
 * As a user, I can invite teammates, manage projects, and control data access.
 
-⸻
+---
 
 ## 8. UI/UX Expansion
 
@@ -303,7 +303,7 @@ User downloads/views/share report
 * Bottom Bar:
 * Recent scans, report downloads, notifications
 
-⸻
+---
 
 ### B. Embeddable Widget UI
 
@@ -312,7 +312,7 @@ User downloads/views/share report
 * Dark/light mode toggle
 * “Open full view” button: Links back to main app
 
-⸻
+---
 
 ### C. File View / Details
 
@@ -321,7 +321,7 @@ User downloads/views/share report
 * Commit/churn visualization (mini-bar chart per line or block)
 * Jump-to-definition and find-references
 
-⸻
+---
 
 ### D. Team/Workspace Management
 
@@ -329,7 +329,7 @@ User downloads/views/share report
 * Invite by email
 * Audit trail of repo scans and health report generations
 
-⸻
+---
 
 ### E. Authentication & Onboarding
 
@@ -337,7 +337,7 @@ User downloads/views/share report
 * OAuth repo connect flow (GitHub/GitLab/Bitbucket)
 * Onboarding modal: “Paste repo link or upload ZIP”
 
-⸻
+---
 
 ## 9. API (REST & WebSocket) Specification
 
@@ -400,7 +400,7 @@ User downloads/views/share report
 }
 ```
 
-⸻
+---
 
 ## 10. Workflow Details
 
@@ -411,7 +411,7 @@ User downloads/views/share report
 3. System queues analysis; shows progress.
 4. Once analysis is complete, user lands on dashboard with dependency graph, hot spots, and AI docs.
 
-⸻
+---
 
 ### B. Static Analysis & Documentation
 
@@ -425,7 +425,7 @@ User downloads/views/share report
 4. AI documentation service is invoked per symbol (batched); summaries saved and indexed.
 5. Errors from Sentry fetched/received via webhook and mapped to files/symbols.
 
-⸻
+---
 
 ### C. Visualization & Widget Embedding
 
@@ -433,7 +433,7 @@ User downloads/views/share report
 2. Web app renders interactive graph using D3.js or similar in Kotlin/JS or React.
 3. Embeddable widget loads via URL (iframe or JS SDK), fetches same graph and doc data (public or auth-required mode).
 
-⸻
+---
 
 ### D. Error & Hot Spot Monitoring
 
@@ -442,7 +442,7 @@ User downloads/views/share report
 3. UI overlays red/yellow colors on nodes/edges based on severity/frequency.
 4. Clicking error hot spot surfaces logs, stack traces, and error trends.
 
-⸻
+---
 
 ### E. Health Report Generation
 
@@ -451,7 +451,7 @@ User downloads/views/share report
 3. Exports as PDF/HTML, notifies user.
 4. Optionally, shares via link/email to team.
 
-⸻
+---
 
 ### F. Team & Permission Management
 
@@ -459,7 +459,7 @@ User downloads/views/share report
 2. Roles: admin (full), member (edit), viewer (read-only).
 3. Audit log tracks project scans, data access, and edits.
 
-⸻
+---
 
 ### G. Tech Stack per Component
 
@@ -516,7 +516,7 @@ User downloads/views/share report
 * Hosting: AWS ECS/Fargate, GCP Cloud Run, or Kubernetes (Helm charts for easy deploy)
 * Monitoring: Sentry for frontend/backend, Prometheus + Grafana for infra
 
-⸻
+---
 
 ### 11. (Optional) High-Level Directory Structure
 
@@ -536,7 +536,7 @@ User downloads/views/share report
 /ai                  # Prompt templates, LLM integration (if separate)
 ```
 
-⸻
+---
 
 ## Summary
 
