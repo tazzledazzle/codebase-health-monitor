@@ -3,7 +3,11 @@ val kotlin_version: String by project
 val logback_version: String by project
 val exposed_version: String by project
 val postgresql_version: String by project
-
+val lettuce_version: String by project
+val jgit_version: String by project
+val openai_client_version: String by project
+val sentry_version: String by project
+val jedis_version: String by project
 plugins {
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.serialization") version "1.9.22"
@@ -20,11 +24,6 @@ application {
 repositories {
     mavenCentral()
 }
-val lettuce_version="6.2.6.RELEASE"
-val jgit_version="6.8.0.202311291450-r"
-val openai_client_version="3.7.0"
-val sentry_version="7.3.0"
-val jedis_version="4.3.2"
 
 dependencies {
     // Ktor server
