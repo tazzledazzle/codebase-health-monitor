@@ -3,6 +3,10 @@ plugins {
     kotlin("plugin.serialization")
     id("io.ktor.plugin")
 }
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
 
 dependencies {
     // OpenAI Kotlin SDK
