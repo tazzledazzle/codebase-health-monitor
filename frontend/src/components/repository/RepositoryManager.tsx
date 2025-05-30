@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Upload, Github, AlertCircle, CheckCircle, Clock, X } from 'lucide-react';
-import { useAppStore } from '../../store';
-import { Repository, RepositoryStatus } from '../../types';
-import { RepositoryList } from './RepositoryList';
-import { AddRepositoryModal } from './AddRepositoryModal';
-import { AnalysisProgress } from './AnalysisProgress';
+import React, {useState, useEffect} from 'react';
+import {Plus, Upload, Github, AlertCircle, CheckCircle, Clock, X} from 'lucide-react';
+import {useAppStore} from '../../store';
+import {Repository, RepositoryStatus} from '../../types';
+import {RepositoryList} from './RepositoryList';
+import {AddRepositoryModal} from './AddRepositoryModal';
+import {AnalysisProgress} from './AnalysisProgress';
 
 export const RepositoryManager: React.FC = () => {
     const [showAddModal, setShowAddModal] = useState(false);
@@ -60,13 +60,13 @@ export const RepositoryManager: React.FC = () => {
     const getStatusIcon = (status: RepositoryStatus) => {
         switch (status) {
             case RepositoryStatus.READY:
-                return <CheckCircle className="w-5 h-5 text-green-500" />;
+                return <CheckCircle className="w-5 h-5 text-green-500"/>;
             case RepositoryStatus.ANALYZING:
-                return <Clock className="w-5 h-5 text-blue-500 animate-spin" />;
+                return <Clock className="w-5 h-5 text-blue-500 animate-spin"/>;
             case RepositoryStatus.ERROR:
-                return <AlertCircle className="w-5 h-5 text-red-500" />;
+                return <AlertCircle className="w-5 h-5 text-red-500"/>;
             default:
-                return <Clock className="w-5 h-5 text-gray-500" />;
+                return <Clock className="w-5 h-5 text-gray-500"/>;
         }
     };
 
@@ -87,7 +87,7 @@ export const RepositoryManager: React.FC = () => {
                     onClick={() => setShowAddModal(true)}
                     className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                 >
-                    <Plus className="w-5 h-5" />
+                    <Plus className="w-5 h-5"/>
                     <span>Add Repository</span>
                 </button>
             </div>
