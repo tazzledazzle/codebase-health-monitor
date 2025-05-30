@@ -23,6 +23,7 @@ application {
 
 repositories {
     mavenCentral()
+    maven("https://central.sonatype.com/")
 }
 
 dependencies {
@@ -77,11 +78,10 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:2.3.7")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
 
-    // Kotlinx serialization
+    // Kotlinx
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
-    // Kotlinx coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
 
     // Testing
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")

@@ -1,12 +1,10 @@
 package com.codehealthexplorer.model
 
 
-import org.jetbrains.exposed.*
-import java.time.LocalDateTime
-import java.util.*
-import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.javatime.datetime
+import java.time.LocalDateTime
+import java.util.*
 
 // Database Tables
 object Repositories : Table("repositories") {

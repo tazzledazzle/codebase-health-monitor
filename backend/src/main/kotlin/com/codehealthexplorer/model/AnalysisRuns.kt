@@ -1,12 +1,11 @@
 package com.codehealthexplorer.model
 
 
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.javatime.datetime
-import org.jetbrains.exposed.sql.json.jsonb
+//import kotlinx.datetime.LocalDateTime
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.javatime.datetime
 import java.time.LocalDateTime
 import java.util.*
-import kotlinx.serialization.Serializable
 
 
 object AnalysisRuns : Table("analysis_runs") {
@@ -16,6 +15,6 @@ object AnalysisRuns : Table("analysis_runs") {
     val completedAt = datetime("completed_at").nullable()
     val status = enumerationByName<AnalysisStatus>("status", 50)
     val error = text("error").nullable()
-    val metrics = jsonb<CodeMetrics>("metrics", CodeMetrics::class).nullable()
+//    val metrics =  jsonb<CodeMetrics>("metrics", CodeMetrics::class).nullable()
     override val primaryKey = PrimaryKey(id)
 }
