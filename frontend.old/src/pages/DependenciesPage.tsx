@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GitBranch, Network } from 'lucide-react';
 import { useAppStore } from '../store';
-import DependencyGraph from '../components/visualization/DependencyGraph';
+import ForceGraph from '../components/visualization/ForceGraph';
 import DocumentationPanel from '../components/documentation/DocumentationPanel';
 
 const DependenciesPage: React.FC = () => {
@@ -73,7 +73,7 @@ const DependenciesPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <DependencyGraph data={graphData} height={700} />
+          <ForceGraph data={graphData} height={700} />
         </div>
         <div>
           <DocumentationPanel documentation={selectedDoc} />
