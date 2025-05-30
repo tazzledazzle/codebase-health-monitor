@@ -126,10 +126,10 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                 <div className="flex border-b border-gray-200 dark:border-gray-700">
                     <button
                         onClick={() => setActiveTab('git')}
-                        className={`flex-1 py-3 px-4 text-center ${
+                        className={`flex-1 py-3 px-4 text-sm font-medium ${
                             activeTab === 'git'
-                                ? 'text-blue-600 border-b-2 border-blue-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                                ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
+                                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                         }`}
                     >
                         <Github className="w-4 h-4 inline mr-2" />
@@ -137,10 +137,10 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                     </button>
                     <button
                         onClick={() => setActiveTab('upload')}
-                        className={`flex-1 py-3 px-4 text-center ${
+                        className={`flex-1 py-3 px-4 text-sm font-medium ${
                             activeTab === 'upload'
-                                ? 'text-blue-600 border-b-2 border-blue-600'
-                                : 'text-gray-500 hover:text-gray-700'
+                                ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
+                                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                         }`}
                     >
                         <Upload className="w-4 h-4 inline mr-2" />
@@ -148,57 +148,65 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                     </button>
                 </div>
 
+                {/* Error Display */}
+                {error && (
+                    <div className="m-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                        <div className="flex items-center">
+                            <AlertCircle className="w-5 h-5 text-red-500 mr-2" />
+                            <p className="text-red-700 dark:text-red-400 text-sm">{error}</p>
+                        </div>
+                    </div>
+                )}
+
                 {/* Content */}
                 <div className="p-6">
-                    {error && (
-                        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                            <AlertCircle className="w-4 h-4 inline mr-2" />
-                            {error}
-                        </div>
-                    )}
-
-                    {activeTab === 'git' && (
+                    {activeTab === 'git' ? (
                         <form onSubmit={handleGitSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Repository Name
                                 </label>
                                 <input
                                     type="text"
                                     value={repoName}
                                     onChange={(e) => setRepoName(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="e.g., My Project"
+                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="My Awesome Project"
                                     required
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Git URL
                                 </label>
                                 <input
                                     type="url"
                                     value={gitUrl}
                                     onChange={(e) => setGitUrl(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="https://github.com/user/repo.git"
+                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="https://github.com/username/repo.git"
                                     required
                                 />
+                                {gitUrl && !validateGitUrl(gitUrl) && (
+                                    <p className="text-yellow-600 dark:text-yellow-400 text-xs mt-1">
+                                        Please enter a valid Git repository URL
+                                    </p>
+                                )}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Access Token (Optional)
                                 </label>
                                 <input
                                     type="password"
                                     value={accessToken}
                                     onChange={(e) => setAccessToken(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="For private repositories"
+                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="ghp_xxxxxxxxxxxx"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">
+                                <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
                                     Required for private repositories
                                 </p>
                             </div>
@@ -206,7 +214,7 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                             <button
                                 type="submit"
                                 disabled={loading || !repoName || !gitUrl}
-                                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-md transition-colors flex items-center justify-center"
+                                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center"
                             >
                                 {loading ? (
                                     <Loader className="w-4 h-4 animate-spin mr-2" />
@@ -216,52 +224,52 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                                 {loading ? 'Adding Repository...' : 'Add Repository'}
                             </button>
                         </form>
-                    )}
-
-                    {activeTab === 'upload' && (
+                    ) : (
                         <form onSubmit={handleUploadSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                    Project Name
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Repository Name
                                 </label>
                                 <input
                                     type="text"
                                     value={uploadName}
                                     onChange={(e) => setUploadName(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="e.g., My Project"
+                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="My Project"
                                     required
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     ZIP File
                                 </label>
                                 <div
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-500 transition-colors"
+                                    className="w-full p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
                                 >
-                                    <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
-                                    {selectedFile ? (
-                                        <div>
-                                            <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                                {selectedFile.name}
-                                            </p>
-                                            <p className="text-xs text-gray-500">
-                                                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
-                                            </p>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                                Click to select ZIP file
-                                            </p>
-                                            <p className="text-xs text-gray-500">
-                                                Max size: 100MB
-                                            </p>
-                                        </div>
-                                    )}
+                                    <div className="text-center">
+                                        <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                                        {selectedFile ? (
+                                            <div>
+                                                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    {selectedFile.name}
+                                                </p>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                    {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    Click to upload ZIP file
+                                                </p>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                    Maximum size: 100MB
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <input
                                     ref={fileInputRef}
@@ -269,14 +277,13 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                                     accept=".zip"
                                     onChange={handleFileSelect}
                                     className="hidden"
-                                    required
                                 />
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={loading || !uploadName || !selectedFile}
-                                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-md transition-colors flex items-center justify-center"
+                                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center"
                             >
                                 {loading ? (
                                     <Loader className="w-4 h-4 animate-spin mr-2" />
