@@ -280,28 +280,28 @@ User downloads/views/share report
 ### A. Main Dashboard
 
 * Header:
-* Logo
-* Repo/project selector
-* User menu (profile, settings, logout)
+  * Logo
+  * Repo/project selector
+  * User menu (profile, settings, logout)
 * Overview Stats:
-* Total files, modules, classes, functions
-* Error count, top error locations (with Sentry icon for live errors)
-* Churn/ownership metrics
+  * Total files, modules, classes, functions
+  * Error count, top error locations (with Sentry icon for live errors)
+  * Churn/ownership metrics
 * Interactive Graph Area:
-* Node-link graph visualizing modules/files/classes
+  * Node-link graph visualizing modules/files/classes
 * Controls: zoom, pan, search, node filter (by error, churn, module, etc.)
-* Color overlays for hot spots (red/yellow intensity for errors/churn)
+  * Color overlays for hot spots (red/yellow intensity for errors/churn)
 * AI Doc Sidebar:
-* Updates when a node is clicked
-* Natural-language summary, usage notes, sample usages
-* “Open in file view” link, copy-to-clipboard, and permalink
+  * Updates when a node is clicked
+  * Natural-language summary, usage notes, sample usages
+  * “Open in file view” link, copy-to-clipboard, and permalink
 * File Explorer:
-* Tree view of project structure
-* Highlights files by error/churn
+  * Tree view of project structure
+  * Highlights files by error/churn
 * Project Health Card:
-* Quick health indicators (score, trend arrows, last scan time)
+  * Quick health indicators (score, trend arrows, last scan time)
 * Bottom Bar:
-* Recent scans, report downloads, notifications
+  * Recent scans, report downloads, notifications
 
 ---
 
@@ -348,6 +348,7 @@ User downloads/views/share report
   * `POST /api/auth/oauth/github`
   * `GET /api/users/me`
   * `POST /api/invite`
+
 * Repo Management
   * `POST /api/repos/add` (clone repo or upload ZIP)
   * `GET /api/repos/:id` (metadata, status)
