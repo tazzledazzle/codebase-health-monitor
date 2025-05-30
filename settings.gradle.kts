@@ -1,4 +1,4 @@
-rootProject.name = "kotlin-compiler-plugin"
+rootProject.name = "codebase-health-monitor"
 
 pluginManagement {
     repositories {
