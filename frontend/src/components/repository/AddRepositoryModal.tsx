@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { X, Github, Upload, AlertCircle, Loader } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Repository } from '../../types';
 
 interface AddRepositoryModalProps {
@@ -11,9 +11,9 @@ export const AddRepositoryModal: React.FC<AddRepositoryModalProps> = ({
                                                                           onClose,
                                                                           onRepositoryAdded
                                                                       }) => {
-    const [activeTab, setActiveTab] = useState<'git' | 'upload'>('git');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [, setActiveTab] = useState<'git' | 'upload'>('git');
+    const [, setLoading] = useState(false);
+    const [, setError] = useState<string | null>(null);
 
     // Git form state
     const [gitUrl, setGitUrl] = useState('');
