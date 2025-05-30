@@ -24,7 +24,7 @@ val lettuce_version="6.2.6.RELEASE"
 val jgit_version="6.8.0.202311291450-r"
 val openai_client_version="3.7.0"
 val sentry_version="7.3.0"
-val jedis_version="4.3.1"
+val jedis_version="4.3.2"
 
 dependencies {
     // Ktor server
@@ -49,8 +49,10 @@ dependencies {
     // Sentry SDK
     implementation("io.sentry:sentry:$sentry_version")
     implementation("io.sentry:sentry-kotlin-extensions:$sentry_version")
-    implementation("io.sentry:sentry-kotlin-logging:$sentry_version")
-    
+//    implementation("io.sentry:sentry-kotlin-logging:$sentry_version")
+
+    // Kotlin Embeddable Components
+    implementation("org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlin_version")
 
     // Database
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
@@ -64,4 +66,9 @@ dependencies {
     // Testing
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
+    testImplementation("io.mockk:mockk:1.13.8")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

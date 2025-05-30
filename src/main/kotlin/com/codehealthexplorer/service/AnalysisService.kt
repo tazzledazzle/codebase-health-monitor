@@ -1,15 +1,13 @@
 package com.codehealthexplorer.service
 
-import com.codehealthexplorer.analysis.StaticAnalyzer
+import com.codehealthexplorer.analyzer.StaticAnalyzer
 import com.codehealthexplorer.model.*
 import com.codehealthexplorer.repository.RepositoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.io.File
 import java.util.*
-import kotlin.math.roundToInt
 
 class AnalysisService(
     private val repository: RepositoryRepository,
@@ -58,11 +56,11 @@ class AnalysisService(
                         sourceFileId = fileMap[dep.from]?.id,
                         target = dep.to,
                         type = when (dep.type) {
-                            com.codehealthexplorer.analysis.DependencyType.INHERITANCE -> DependencyType.INHERITANCE
-                            com.codehealthexplorer.analysis.DependencyType.IMPLEMENTATION -> DependencyType.IMPLEMENTATION
-                            com.codehealthexplorer.analysis.DependencyType.IMPORT -> DependencyType.IMPORT
-                            com.codehealthexplorer.analysis.DependencyType.FUNCTION_CALL -> DependencyType.FUNCTION_CALL
-                            com.codehealthexplorer.analysis.DependencyType.VARIABLE_REFERENCE -> DependencyType.VARIABLE_REFERENCE
+                            com.codehealthexplorer.analyzer.DependencyType.INHERITANCE -> DependencyType.INHERITANCE
+                            com.codehealthexplorer.analyzer.DependencyType.IMPLEMENTATION -> DependencyType.IMPLEMENTATION
+                            com.codehealthexplorer.analyzer.DependencyType.IMPORT -> DependencyType.IMPORT
+                            com.codehealthexplorer.analyzer.DependencyType.FUNCTION_CALL -> DependencyType.FUNCTION_CALL
+                            com.codehealthexplorer.analyzer.DependencyType.VARIABLE_REFERENCE -> DependencyType.VARIABLE_REFERENCE
                         }
                     )
                 }

@@ -1,6 +1,6 @@
 package com.codehealthexplorer
 
-import com.codehealthexplorer.analysis.StaticAnalyzer
+import com.codehealthexplorer.analyzer.StaticAnalyzer
 import com.codehealthexplorer.controller.repositoryRoutes
 import com.codehealthexplorer.plugins.*
 import com.codehealthexplorer.repository.RepositoryRepository
@@ -11,8 +11,6 @@ import io.ktor.server.netty.*
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
-import java.io.File
-import javax.sql.DataSource
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)

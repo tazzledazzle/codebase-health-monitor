@@ -1,7 +1,6 @@
-package com.codehealthexplorer.analysis
+package com.codehealthexplorer.analyzer
 
 import java.io.File
-import org.jetbrains.kotlin.com.intellij.openapi.util.io.FileUtil
 
 interface CodeAnalyzer {
     fun analyze(directory: File): AnalysisResult
