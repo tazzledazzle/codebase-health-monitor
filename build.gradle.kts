@@ -61,6 +61,15 @@ dependencies {
     
     // Logging
     implementation("ch.qos.logback:logback-classic:$logback_version")
+
+
+    // exposed ORM
+    implementation("org.jetbrains.exposed:exposed-core:0.50.1")
+    implementation("org.jetbrains.exposed:exposed-dao:0.50.1")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.50.1")
+    implementation("org.jetbrains.exposed:exposed-java-time:0.50.1")
+    implementation("org.jetbrains.exposed:exposed-json:0.50.1")
+    implementation("org.jetbrains.exposed:exposed-postgresql:0.50.1")
     
     // Testing
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
