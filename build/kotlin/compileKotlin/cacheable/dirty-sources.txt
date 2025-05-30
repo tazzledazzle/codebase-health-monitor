@@ -1,0 +1,6 @@
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/plugins/CORS.kt
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/plugins/Databases.kt
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/Application.kt
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/plugins/Serialization.kt
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/plugins/Security.kt
+/Users/terenceschumacher/Downloads/codebase-health-monitor/src/main/kotlin/com/codehealthexplorer/plugins/Routing.kt
