@@ -8,6 +8,10 @@ import com.codehealthexplorer.service.AnalysisService
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
+import org.jetbrains.exposed.v1.jdbc.Database
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
@@ -29,7 +33,11 @@ fun Application.module() {
     configureCORS()
     configureSecurity()
     configureDatabases()
-    
+//    configureMonitoring()
+//    configureOpenAPI()
+//    configureSentry()
+//    configureRedis()
+    configureRouting()
     // Configure routing
     routing {
         // Health check endpoint
@@ -45,7 +53,7 @@ fun Application.module() {
 // Koin module for dependency injection
 val appModule = module {
     single { Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver") }
-    single { RepositoryRepository(get()) }
+    single { RepositoryRepository(this.get()) }
     single { StaticAnalyzer() }
     single { AnalysisService(get(), get()) }
 }

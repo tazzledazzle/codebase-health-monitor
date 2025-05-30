@@ -1,9 +1,14 @@
 package com.codehealthexplorer.analyzer
 
+import com.codehealthexplorer.model.CodeFile
+import com.codehealthexplorer.service.FileAnalysisResult
 import java.io.File
+import java.nio.file.Path
 
 interface CodeAnalyzer {
     fun analyze(directory: File): AnalysisResult
+    suspend fun analyzeFile(filePath: Path, codeFile: CodeFile): FileAnalysisResult
+
 }
 
 data class AnalysisResult(
@@ -107,7 +112,14 @@ class StaticAnalyzer : CodeAnalyzer {
             metrics = metrics
         )
     }
-    
+
+    override suspend fun analyzeFile(
+        filePath: Path,
+        codeFile: CodeFile
+    ): FileAnalysisResult {
+        TODO("Not yet implemented")
+    }
+
     private fun analyzeFile(file: File, rootDir: File): SourceFile {
         val relativePath = file.relativeTo(rootDir).path
         val content = file.readText()

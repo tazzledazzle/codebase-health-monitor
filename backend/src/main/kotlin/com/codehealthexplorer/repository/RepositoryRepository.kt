@@ -1,9 +1,18 @@
 package com.codehealthexplorer.repository
 
 import com.codehealthexplorer.model.*
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.*
+import org.jetbrains.exposed.v1.jdbc.Database
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.insert
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import kotlinx.coroutines.*
+import org.jetbrains.exposed.v1.core.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.v1.jdbc.deleteWhere
+import org.jetbrains.exposed.v1.jdbc.select
+import org.jetbrains.exposed.v1.jdbc.update
+import java.time.LocalDateTime
+
 import java.util.*
 
 class RepositoryRepository(private val database: Database) {
@@ -50,8 +59,8 @@ class RepositoryRepository(private val database: Database) {
     }
 
     // Analysis Run operations
-    fun createAnalysisRun(repositoryId: UUID): UUID = transaction(database) {
-        AnalysisRuns.insert {
+    fun createAnalysisRun(repositoryId: UUID): String = transaction(database) {
+        insert {
             it[AnalysisRuns.repositoryId] = repositoryId
             it[status] = AnalysisStatus.PENDING
         } get AnalysisRuns.id
@@ -63,18 +72,6 @@ class RepositoryRepository(private val database: Database) {
         error: String? = null,
         metrics: CodeMetrics? = null
     ) = transaction(database) {
-        AnalysisRuns.update({ AnalysisRuns.id eq id }) {
-            it[AnalysisRuns.status] = status
-            it[completedAt] = if (status == AnalysisStatus.COMPLETED || status == AnalysisStatus.FAILED) {
-                LocalDateTime.now()
-            } else {
-                null
-            }
-            it[AnalysisRuns.error] = error
-            if (metrics != null) {
-                it[AnalysisRuns.metrics] = metrics
-            }
-        }
     }
 
     // File operations
@@ -83,8 +80,8 @@ class RepositoryRepository(private val database: Database) {
         CodeFiles.deleteWhere { CodeFiles.repositoryId eq repositoryId }
         
         // Insert new files
-        files.forEach { file ->
-            CodeFiles.insert {
+        files.forEach { file: CodeFile ->
+            insert {
                 it[id] = file.id
                 it[code][CodeFiles.repositoryId] = repositoryId
                 it[path] = file.path
@@ -104,7 +101,7 @@ class RepositoryRepository(private val database: Database) {
         
         // Insert new dependencies
         dependencies.forEach { dep ->
-            Dependencies.insert {
+            insert {
                 it[id] = dep.id
                 it[code][Dependencies.repositoryId] = repositoryId
                 it[sourceFileId] = dep.sourceFileId
@@ -116,7 +113,7 @@ class RepositoryRepository(private val database: Database) {
 
     // Query methods
     fun getRepositoryFiles(repositoryId: UUID): List<CodeFile> = transaction(database) {
-        CodeFiles.select { CodeFiles.repositoryId eq repositoryId }
+        select { CodeFiles.repositoryId eq repositoryId }
             .map { row ->
                 CodeFile(
                     id = row[CodeFiles.id].value,
@@ -132,7 +129,7 @@ class RepositoryRepository(private val database: Database) {
     }
 
     fun getFileDependencies(fileId: UUID): List<Dependency> = transaction(database) {
-        Dependencies.select { Dependencies.sourceFileId eq fileId }
+        select { Dependencies.sourceFileId eq fileId }
             .map { row ->
                 Dependency(
                     id = row[Dependencies.id].value,
@@ -145,7 +142,7 @@ class RepositoryRepository(private val database: Database) {
     }
 
     fun getRepositoryDependencies(repositoryId: UUID): List<Dependency> = transaction(database) {
-        Dependencies.select { Dependencies.repositoryId eq repositoryId }
+        select { Dependencies.repositoryId eq repositoryId }
             .map { row ->
                 Dependency(
                     id = row[Dependencies.id].value,

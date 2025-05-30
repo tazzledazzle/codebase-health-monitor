@@ -53,12 +53,19 @@ dependencies {
     // Kotlin Embeddable Components
     implementation("org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlin_version")
 
+    // Koin Dependency Injection
+    implementation("io.insert-koin:koin-core:3.5.6")
+    implementation("io.insert-koin:koin-ktor:3.5.6")
+    implementation("io.insert-koin:koin-logger-slf4j:3.5.6")
+
     // Database
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-json:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-java-time:$exposed_version")
     implementation("org.postgresql:postgresql:$postgresql_version")
+//    implementation("org.jetbrains.exposed:exposed-postgresql:$exposed_version")
 
     // Logging
     implementation("ch.qos.logback:logback-classic:$logback_version")

@@ -12,6 +12,7 @@ import org.jetbrains.kotlin.com.intellij.testFramework.LightVirtualFile
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.psi.*
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -169,5 +170,9 @@ class KotlinAnalyzer : CodeAnalyzer {
         return content.lines()
             .map { it.trim() }
             .count { it.isNotEmpty() && !it.startsWith("//") && !it.startsWith("/*") }
+    }
+
+    override fun analyze(directory: File): AnalysisResult {
+        TODO("Not yet implemented")
     }
 }

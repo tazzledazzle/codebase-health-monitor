@@ -10,8 +10,8 @@ import java.io.File
 import java.util.*
 
 class AnalysisService(
-    private val repository: RepositoryRepository,
-    private val staticAnalyzer: StaticAnalyzer = StaticAnalyzer()
+    var repository: RepositoryRepository,
+    var staticAnalyzer: StaticAnalyzer = StaticAnalyzer()
 ) : KoinComponent {
 
     suspend fun analyzeRepository(repositoryId: UUID) = withContext(Dispatchers.IO) {

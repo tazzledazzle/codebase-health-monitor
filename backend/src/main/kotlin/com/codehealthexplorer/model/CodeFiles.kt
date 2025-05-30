@@ -1,12 +1,11 @@
 package com.codehealthexplorer.model
 
 
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.javatime.datetime
-import org.jetbrains.exposed.sql.json.jsonb
-import java.time.LocalDateTime
+import org.jetbrains.exposed.*
 import java.util.*
 import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.javatime.datetime
 
 
 object CodeFiles : Table("code_files") {
