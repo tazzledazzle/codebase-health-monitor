@@ -20,6 +20,11 @@ application {
 repositories {
     mavenCentral()
 }
+val lettuce_version="6.2.6.RELEASE"
+val jgit_version="6.8.0.202311291450-r"
+val openai_client_version="3.7.0"
+val sentry_version="7.3.0"
+val jedis_version="4.3.1"
 
 dependencies {
     // Ktor server
