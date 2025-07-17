@@ -5,18 +5,14 @@ import org.jetbrains.exposed.v1.javatime.datetime
 import java.time.LocalDateTime
 import java.util.*
 
-// Database Tables
-object Repositories : Table("repositories") {
+object Users : Table("users") {
     val id = uuid("id").clientDefault { UUID.randomUUID() }
+    val email = varchar("email", 255).uniqueIndex()
     val name = varchar("name", 255)
-    val url = varchar("url", 500).nullable()
-    val localPath = varchar("local_path", 500)
-    val ownerId = uuid("owner_id").references(Users.id)
-    val teamId = uuid("team_id").references(Teams.id).nullable()
+    val passwordHash = varchar("password_hash", 255).nullable()
+    val avatarUrl = varchar("avatar_url", 500).nullable()
     val createdAt = datetime("created_at").clientDefault { LocalDateTime.now() }
     val updatedAt = datetime("updated_at").clientDefault { LocalDateTime.now() }
-    val lastAnalyzedAt = datetime("last_analyzed_at").nullable()
-    val status = enumerationByName<RepositoryStatus>("status", 50)
     
     override val primaryKey = PrimaryKey(id)
 }
